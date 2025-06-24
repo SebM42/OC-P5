@@ -1,0 +1,39 @@
+services:
+  mongodb:
+    image: mongo:6-jammy
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_PASSWORD:?Error: MONGO_PASSWORD is required}"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - appnet
+
+  oc-p5:
+    image: oc-p5
+    profiles:
+      - migration
+    container_name: oc-p5
+    environment:
+      MONGO_ROOT_USERNAME: admin
+      MONGO_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    depends_on:
+      - mongodb
+    networks:
+      - appnet
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: ["sh", "src/entrypoint.sh"]
+
+networks:
+  appnet:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

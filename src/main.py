@@ -104,8 +104,9 @@ def create_flattening_pipeline(normalised:list, serialised:list):
             addfields[j['names']] = '$'+j['new_column_name']+'.'+j['names']
         
         project[j['new_column_name']] = 0
-        
-    pipeline.append({'$addFields':addfields})
+    
+    if len(addfields) > 0:
+        pipeline.append({'$addFields':addfields})
     pipeline.append({'$project':project})
     
     return pipeline
@@ -135,9 +136,19 @@ def create_flatten_view(mongo_client:MongoClient, database:str, view_name:str, v
         print(check_command_result(command_result,'View created'))
   
 
+def create_roles(mongo_client:MongoClient, roles_config:list):
+    db = mongo_client['admin']
+        
+    # create roles
+    for role in roles_config:
+        command_result = db.command("createRole", role['role'], privileges=role['privileges'], roles=[])
+        print(check_command_result(command_result,f"Role {role['role']} created"))
+    
+    
+
 # MAIN
 if __name__ == '__main__':
-    data_original = load_data('..\\'+config.FILE_DATA)
+    data_original = load_data(config.FILE_DATA)
 
     data_standardised = standardise_columns_names(data_original)
     
@@ -164,6 +175,6 @@ if __name__ == '__main__':
     create_flatten_view(mongo_client, config.NEW_DB_NAME, config.FLATTEN_VIEW_NAME, config.NEW_MAIN_COLLECTION_NAME,
                         config.COLUMS_TO_NORMALISE, config.COLUMNS_TO_SERIALISE)
 
-    
+    create_roles(mongo_client, config.ROLES)
 
     
