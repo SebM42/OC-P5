@@ -5,8 +5,8 @@
 **Table of contents**
 
 - [Getting started](#getting-started)
-	- [Building local image(optional)](#building-local-image)
-	- [Installation with Docker/Docker Compose](#installation-with-docker-docker-compose)
+	- [Building local image(optional)](#building-from-local-image-optional)
+	- [Installation with Docker/Docker Compose](#installation-with-docker-docker-compose-docker-engine-required)
 - [Methodology](#methodology)
 - [Authentification method](#authentification-method)
 - [Custom Roles](#custom-roles)
@@ -20,9 +20,9 @@ Needed only if you want to temper with src/config.py
     git clone https://github.com/SebM42/OC-P5
     # change to project root directory
     cd OC-P5
-	# edit src/config.py if you want to
-	# build image
-	docker-compose build
+    # edit src/config.py if you want to
+    # build image
+    docker-compose build
 ```
 
 ### Installation with Docker/Docker Compose (docker engine required)
@@ -59,7 +59,7 @@ Below is the procedural logic used by the system :
 	- standardize column names with only lower cases and _ instead of spaces
 	- force data type of each column according to COLUMNS_DTYPE_TARGET in src/config.py
 	- restructure the data to match the schema below :
-	![banner](docs/images/schema.jpg)
+	![banner](docs/img/schema.jpg)
 		- by normalising the columns according to COLUMS_TO_NORMALISE in src/config.py
 		- by serialising the columns according to COLUMNS_TO_SERIALISE in src/config.py
 	- insert the restructured tables as collections in a new MongoDB database named after NEW_DB_NAME in src/config.py
@@ -80,9 +80,9 @@ This method ensure a high level of security because :
 - it protects against replay or brute force attacks
 
 ## Custom Roles
-Along with the data migration, the script creates 3 custom new roles :
-customRead : can only read the new database components (collections, documents, etc.)
-customReadWrite : can only read or modify (insert/update) the new database components
-customFull : can read, modify and delete the new database components
+Along with the data migration, the script creates 3 custom new roles :  
+customRead : can only read the new database components (collections, documents, etc.)  
+customReadWrite : can only read or modify (insert/update) the new database components  
+customFull : can read, modify and delete the new database components  
 
 Each roles can only access the newly created database, they have no access to any other database or MongoDB system configuration
