@@ -5,7 +5,7 @@
 **Table of contents**
 
 - [Getting started](#getting-started)
-	- [Building local image(optional)](#building-from-local-image-optional)
+	- [Clone repository](#clone-repository)
 	- [Installation with Docker Compose](#installation-with-docker-compose)
 - [Methodology](#methodology)
 - [Authentification method](#authentification-method)
@@ -20,15 +20,6 @@
     # change to project root directory
     cd OC-P5
 ```
-
-### Building from local image (optional)
-Needed only if you want to tamper with src/config.py
-```bash
-    # edit src/config.py if you want to
-    # build image
-    docker-compose --profile migration build
-```
-
 ### Installation with Docker Compose
 
 #### Download Docker
