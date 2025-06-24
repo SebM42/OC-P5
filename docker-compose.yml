@@ -14,7 +14,11 @@ services:
       - appnet
 
   oc-p5:
-    image: oc-p5
+    image: sebm42/oc-p5:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
     profiles:
       - migration
     container_name: oc-p5
