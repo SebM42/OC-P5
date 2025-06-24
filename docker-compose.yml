@@ -18,7 +18,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: builder
     profiles:
       - migration
     container_name: oc-p5
