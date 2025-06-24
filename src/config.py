@@ -1,7 +1,17 @@
-FILE_DATA = 'data\\healthcare_dataset.csv'
+import os
+# DB CONNECTION
 
-DB_DRIVER_STRING = 'mongodb://localhost:27017/'
+USER_NAME = os.getenv('MONGO_ROOT_USERNAME')
+PW = os.getenv('MONGO_ROOT_PASSWORD')
+HOST = 'mongodb'
+PORT = '27017'
 
+DB_DRIVER_STRING = f'mongodb://{USER_NAME}:{PW}@{HOST}:{PORT}/'
+
+# DATA RELATIVE PATH
+FILE_DATA = 'data//healthcare_dataset.csv'
+
+# MIGRATION
 NEW_DB_NAME = 'healthcare'
 NEW_MAIN_COLLECTION_NAME = 'admissions'
 FLATTEN_VIEW_NAME = 'flatten_view'
@@ -45,3 +55,39 @@ COLUMNS_TO_SERIALISE = [
      'new_column_name':'patient' # name of the new column containing serialised values
     }
 ]
+
+# ADMIN AND ROLES
+
+ROLES = [
+    {
+        'role': "customRead",
+        'privileges': [
+            {
+                'resource': {'db': NEW_DB_NAME, 'collection': ""},
+                'actions': ["find"]
+            }
+        ]
+    },
+    {
+        'role': "customReadWrite",
+        'privileges': [
+            {
+                'resource': {'db': NEW_DB_NAME, 'collection': ""},
+                'actions': ["find", "insert", "update"]
+            }
+        ]
+    },
+    {
+        'role': "customFull",
+        'privileges': [
+            {
+                'resource': {'db': NEW_DB_NAME, 'collection': ""},
+                'actions': ["find", "insert", "update", "remove"]
+            }
+        ]
+    }
+]
+
+
+
+
