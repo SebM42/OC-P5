@@ -6,7 +6,7 @@
 
 - [Getting started](#getting-started)
 	- [Building local image(optional)](#building-from-local-image-optional)
-	- [Installation with Docker/Docker Compose](#installation-with-docker-docker-compose)
+	- [Installation with Docker Compose](#installation-with-docker-compose)
 - [Methodology](#methodology)
 - [Authentification method](#authentification-method)
 - [Custom Roles](#custom-roles)
@@ -25,8 +25,17 @@ Needed only if you want to tamper with src/config.py
     docker-compose --profile migration build
 ```
 
-### Installation with Docker/Docker Compose
-requires Docker engine
+### Installation with Docker Compose
+#### Get the docker-compose file (only if you skipped the previous step)
+download manually from github https://github.com/SebM42/OC-P5/blob/main/docker-compose.yml
+or
+```cmd
+    curl -o docker-compose.yml https://raw.githubusercontent.com/SebM42/OC-P5/refs/heads/main/docker-compose.yml
+```
+
+#### Download Docker
+Download the Docker Desktop mathing your OS on https://www.docker.com/products/docker-desktop/
+
 #### Set your MongoDB root password
 Windows :
 ```cmd
