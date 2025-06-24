@@ -13,25 +13,23 @@
 
 ## Getting started
 
-### Building from local image (optional)
-Needed only if you want to tamper with src/config.py
+### Clone repository
 ```bash
     # clone git repository (make sure you're in the folder you want to put the aplication in)
     git clone https://github.com/SebM42/OC-P5
     # change to project root directory
     cd OC-P5
+```
+
+### Building from local image (optional)
+Needed only if you want to tamper with src/config.py
+```bash
     # edit src/config.py if you want to
     # build image
     docker-compose --profile migration build
 ```
 
 ### Installation with Docker Compose
-#### Get the docker-compose file (only if you skipped the previous step)
-download manually from github https://github.com/SebM42/OC-P5/blob/main/docker-compose.yml  
-or  
-```cmd
-    curl -o docker-compose.yml https://raw.githubusercontent.com/SebM42/OC-P5/refs/heads/main/docker-compose.yml
-```
 
 #### Download Docker
 Download the Docker Desktop mathing your OS on https://www.docker.com/products/docker-desktop/
