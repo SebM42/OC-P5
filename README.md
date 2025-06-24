@@ -22,7 +22,7 @@ Needed only if you want to temper with src/config.py
     cd OC-P5
     # edit src/config.py if you want to
     # build image
-    docker-compose build
+    docker-compose --profile migration build
 ```
 
 ### Installation with Docker/Docker Compose (docker engine required)
