@@ -6,7 +6,7 @@
 
 - [Getting started](#getting-started)
 	- [Building local image(optional)](#building-from-local-image-optional)
-	- [Installation with Docker/Docker Compose](#installation-with-docker-docker-compose-docker-engine-required)
+	- [Installation with Docker/Docker Compose](#installation-with-docker-docker-compose)
 - [Methodology](#methodology)
 - [Authentification method](#authentification-method)
 - [Custom Roles](#custom-roles)
@@ -14,7 +14,7 @@
 ## Getting started
 
 ### Building from local image (optional)
-Needed only if you want to temper with src/config.py
+Needed only if you want to tamper with src/config.py
 ```bash
     # clone git repository (make sure you're in the folder you want to put the aplication in)
     git clone https://github.com/SebM42/OC-P5
@@ -25,8 +25,8 @@ Needed only if you want to temper with src/config.py
     docker-compose --profile migration build
 ```
 
-### Installation with Docker/Docker Compose (docker engine required)
-
+### Installation with Docker/Docker Compose
+requires Docker engine
 #### Set your MongoDB root password
 Windows :
 ```cmd
@@ -70,9 +70,9 @@ Below is the procedural logic used by the system :
 	- test integrity between origin data types and the new collections data types
 
 ## Authentification method
-The MongoDB database use a SCRAM-SHA-256 auth method :
-SCRAM : Salted Challenge Response Authentication Mechanism
-SHA-256 : Secure Hash Algorithm (256 refers to the hash length)
+The MongoDB database use a SCRAM-SHA-256 auth method :  
+SCRAM : Salted Challenge Response Authentication Mechanism  
+SHA-256 : Secure Hash Algorithm (256 refers to the hash length)  
 
 This method ensure a high level of security because :
 - it never sends the real password on the network
